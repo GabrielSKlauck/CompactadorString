@@ -5,8 +5,9 @@ namespace ZipString
     {
         public string Compactar(string base64)
         {
+            //dddaaaaehfffnggtttjaaaa
             string base64Compactada;
-            for (int i = 0; i < base64.Length; i++)
+            for (int i = 0; i < base64.Length;)
             {
                 int contador = 1;
                 string encurtador;
@@ -18,10 +19,14 @@ namespace ZipString
                     }
                     if (contador != 1)
                     {
-                        base64 = base64.Remove(i + 1, contador - 1);
-                        encurtador = base64[i] + "-" + (contador - 1);
-                        base64 = base64.Remove(i, i);
+                        base64 = base64.Remove(i, contador - 1);
+                        encurtador = base64[i] + "-" + (contador - 1);                       
                         base64 = base64.Insert(i, encurtador);
+                        i += 3;
+                    }
+                    else
+                    {
+                        i += 1;
                     }
 
 
@@ -30,7 +35,7 @@ namespace ZipString
                 {
 
                 }
-
+                encurtador = "";
                 contador = 1;
             }
             Console.WriteLine(base64);
